@@ -24,6 +24,8 @@ public class InventoryManager : MonoBehaviour
     [HideInInspector] public List<InventoryItems> inventoryItems = new List<InventoryItems>();
     [HideInInspector] public int totalItems = 0;
 
+    [SerializeField] private GameObject speechBubble;
+
     public void AddItem(string name, float price, Sprite image)
     {
         inventoryItems.Add(new InventoryItems(name, price, image));
@@ -39,5 +41,24 @@ public class InventoryManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public void DisplayInventory()
+    {
+        if (totalItems == 0)
+        {
+            Debug.Log("Please select at least 1 item to purchase");
+            return;
+        }
+
+        if (speechBubble != null)
+        {
+            speechBubble.SetActive(true);
+            SpeechBubble bubble = speechBubble.GetComponent<SpeechBubble>();
+            if (bubble != null)
+            {
+                bubble.UpdateBubble(inventoryItems);
+            }
+        }
     }
 }

@@ -3,46 +3,62 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private float interactRange;
+    [SerializeField] private float interactRange = 3f;
+
+    private Animator characterAnimator;
 
     private void Update()
     {
-        InputManager inputManager = InputManager.Instance;
-        InventoryManager inventoryManager = InventoryManager.Instance;
-
-        if (inputManager == null || inventoryManager == null)
+        if (InputManager.Instance == null || InventoryManager.Instance == null)
         {
             Debug.LogWarning("InputManager or InventoryManager is missing");
             return;
         }
 
-        if (inputManager.controls.Player.Interact.WasPressedThisFrame())
+        if (InputManager.Instance.controls.Player.Interact.WasPressedThisFrame())
         {
-            if (inventoryManager.totalItems < inventoryManager.counterSlots.Length)
-            {
-                TryItemPickup(inventoryManager);
-            }
-            else
-            {
-                Debug.Log("More than required items");
-            }
+            TryInteraction();
         }
     }
 
-    private void TryItemPickup(InventoryManager invManager)
+    private void TryInteraction()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange))
         {
-            GroceryItem item = hit.collider.GetComponent<GroceryItem>();
-
-            if (item != null)
+            if (hit.collider.CompareTag("Character"))
             {
-                var targetSlot = invManager.counterSlots[invManager.totalItems];
-                GameObject spawnedItem = Instantiate(item.gameObject, targetSlot.position, Quaternion.identity);
-                spawnedItem.GetComponent<Collider>().enabled = false;
-                spawnedItem.GetComponent<GroceryItem>().enabled = false;
+                if (characterAnimator == null)
+                {
+                    characterAnimator = hit.collider.GetComponent<Animator>();
+                }
 
-                invManager.AddItem(item.itemName, item.itemPrice, item.itemImage);
+                characterAnimator.Play("Waving");
+            }
+            else if (hit.collider.CompareTag("CashRegister"))
+            {
+                InventoryManager.Instance.DisplayInventory();
+            }
+            else
+            {
+                GroceryItem item = hit.collider.GetComponent<GroceryItem>();
+
+                if (item != null)
+                {
+                    if (InventoryManager.Instance.totalItems < InventoryManager.Instance.counterSlots.Length)
+                    {
+                        var invManager = InventoryManager.Instance;
+                        var targetSlot = invManager.counterSlots[invManager.totalItems];
+                        GameObject spawnedItem = Instantiate(item.gameObject, targetSlot.position, Quaternion.identity);
+                        spawnedItem.GetComponent<Collider>().enabled = false;
+                        spawnedItem.GetComponent<GroceryItem>().enabled = false;
+
+                        invManager.AddItem(item.itemName, item.itemPrice, item.itemImage);
+                    }
+                    else
+                    {
+                        Debug.Log("More than required items");
+                    }
+                }
             }
         }
     }
