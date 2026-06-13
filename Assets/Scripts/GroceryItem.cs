@@ -8,7 +8,12 @@ public class GroceryItem : MonoBehaviour
 
     private void Start()
     {
-        if (itemName == "")
+        SetDefaultNameIfEmpty();
+    }
+
+    public void SetDefaultNameIfEmpty()
+    {
+        if (string.IsNullOrEmpty(itemName))
         {
             itemName = gameObject.name;
         }

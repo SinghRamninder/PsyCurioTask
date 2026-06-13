@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 10294089}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9956,6 +9956,10 @@ PrefabInstance:
       value: Checkout counter
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -9980,7 +9984,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
       insertIndex: -1
       addedObject: {fileID: 10294089}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082808035}
   m_SourcePrefab: {fileID: 100100000, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
 --- !u!1001 &480762642
 PrefabInstance:
@@ -10573,7 +10580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 544104321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15187,6 +15194,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeffd6071a8b26648b41fbc428d5065b, type: 3}
+--- !u!1 &941438504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941438506}
+  - component: {fileID: 941438505}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &941438505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941438504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74c17f6ceda815448cc6d0b448e5f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+--- !u!4 &941438506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941438504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 875.01105, y: -0, z: 35.001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &958178377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16029,7 +16080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990506794}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17822,6 +17873,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 488024, guid: 8cab2dfb952b27d41bc19b3b827bcebe, type: 3}
   m_PrefabInstance: {fileID: 2097735140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1064134389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
+  m_PrefabInstance: {fileID: 479719609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1070746599
 GameObject:
   m_ObjectHideFlags: 0
@@ -18587,6 +18643,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 894cd97f295e8fa40b4ec2ab59230599, type: 3}
   m_PrefabInstance: {fileID: 479719609}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1082808035
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064134389}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 23.537807, y: 11.158337, z: 12.394536}
+  m_Center: {x: 1.6500092, y: 5.0000114, z: 6.197268}
 --- !u!1001 &1090669812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20210,7 +20287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1208029852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24791,7 +24868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1740456910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26504,6 +26581,8 @@ MonoBehaviour:
   interactRange: 3
   itemAnimationDuration: 0.5
   noticeContainer: {fileID: 94091197}
+  clickSound: {fileID: 8300000, guid: 3a9f8ef30fd713046828ec06e4a8477a, type: 3}
+  errorSound: {fileID: 8300000, guid: 79c72aeec1d9daa45ae86bcea6833f57, type: 3}
 --- !u!1001 &1882736208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29637,6 +29716,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 31220179}
+  - {fileID: 941438506}
   - {fileID: 33590907}
   - {fileID: 1877010573}
   - {fileID: 410087041}

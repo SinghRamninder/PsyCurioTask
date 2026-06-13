@@ -9,6 +9,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float interactRange = 3f;
     [SerializeField] private float itemAnimationDuration = 0.5f;
     [SerializeField] private GameObject noticeContainer;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip errorSound;
 
     private TMP_Text noticeText;
     private Animator characterAnimator;
@@ -30,7 +32,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private void TryInteraction()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange))
+        int layerIndex = LayerMask.NameToLayer("Checkout");
+        int mask = layerIndex != -1 ? ~(1 << layerIndex) : Physics.DefaultRaycastLayers;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, interactRange, mask))
         {
             if (hit.collider.CompareTag("Character"))
             {
@@ -65,6 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (InventoryManager.Instance.totalItems < InventoryManager.Instance.counterSlots.Length)
                     {
+                        StartCoroutine(AudioManager.Instance.PlaySound(clickSound));
                         var invManager = InventoryManager.Instance;
                         var targetSlot = invManager.counterSlots[invManager.totalItems];
                         GameObject spawnedItem = Instantiate(item.gameObject, item.transform.position, Quaternion.identity);
@@ -77,6 +83,8 @@ public class PlayerInteraction : MonoBehaviour
                     }
                     else
                     {
+                        StartCoroutine(AudioManager.Instance.PlaySound(errorSound));
+
                         if (displayNoticeCoroutine != null)
                         {
                             StopCoroutine(displayNoticeCoroutine);
