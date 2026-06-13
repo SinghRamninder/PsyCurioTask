@@ -45,12 +45,6 @@ public class InventoryManager : MonoBehaviour
 
     public void DisplayInventory()
     {
-        if (totalItems == 0)
-        {
-            Debug.Log("Please select at least 1 item to purchase");
-            return;
-        }
-
         if (speechBubble != null)
         {
             speechBubble.SetActive(true);
