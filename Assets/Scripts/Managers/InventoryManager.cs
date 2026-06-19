@@ -21,15 +21,30 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance {  get; private set; }
 
     public Transform[] counterSlots;
-    [HideInInspector] public List<InventoryItems> inventoryItems = new List<InventoryItems>();
-    [HideInInspector] public int totalItems = 0;
+    [HideInInspector] public Dictionary<int, InventoryItems> inventoryItems = new Dictionary<int, InventoryItems>();
 
     [SerializeField] private GameObject speechBubble;
 
-    public void AddItem(string name, float price, Sprite image)
+    public void AddItem(int slotNumber, string name, float price, Sprite image)
     {
-        inventoryItems.Add(new InventoryItems(name, price, image));
-        totalItems++;
+        inventoryItems.Add(slotNumber, new InventoryItems(name, price, image));
+    }
+
+    public void RemoveItem(int slotNumber)
+    {
+        inventoryItems.Remove(slotNumber);
+    }
+
+    public int GetSlotIndex(Transform slotTransform)
+    {
+        for (int i = 0; i < counterSlots.Length; i++)
+        {
+            if (counterSlots[i] == slotTransform)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void Awake()

@@ -42,7 +42,7 @@ public class SpeechBubble : MonoBehaviour
         }
     }
 
-    public void UpdateBubble(List<InventoryItems> inventoryItems)
+    public void UpdateBubble(Dictionary<int, InventoryItems> inventoryItems)
     {
         if (hideBubbleCoroutine != null)
         {
@@ -53,8 +53,9 @@ public class SpeechBubble : MonoBehaviour
 
         Dictionary<string, (int count, float price, Sprite image)> groupedItems = new Dictionary<string, (int count, float price, Sprite image)>();
 
-        foreach (var item in inventoryItems)
+        foreach (var kvp in inventoryItems)
         {
+            var item = kvp.Value;
             if (groupedItems.ContainsKey(item.itemName))
             {
                 var val = groupedItems[item.itemName];

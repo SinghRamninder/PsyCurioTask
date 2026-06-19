@@ -57,11 +57,11 @@ public class SpeechBubbleTests
     [UnityTest]
     public IEnumerator UpdateBubble_GroupsDuplicateItems()
     {
-        List<InventoryItems> items = new List<InventoryItems>
+        Dictionary<int, InventoryItems> items = new Dictionary<int, InventoryItems>
         {
-            new InventoryItems("Apple", 2f, null),
-            new InventoryItems("Apple", 2f, null),
-            new InventoryItems("Milk", 3f, null)
+            {0, new InventoryItems("Apple", 2f, null)},
+            {1, new InventoryItems("Apple", 2f, null)},
+            {2, new InventoryItems("Milk", 3f, null)}
         };
 
         speechBubble.UpdateBubble(items);
@@ -77,11 +77,11 @@ public class SpeechBubbleTests
     [UnityTest]
     public IEnumerator UpdateBubble_CalculatesCorrectTotalPrice()
     {
-        List<InventoryItems> items = new List<InventoryItems>
+        Dictionary<int, InventoryItems> items = new Dictionary<int, InventoryItems>
         {
-            new InventoryItems("Apple", 2f, null),
-            new InventoryItems("Milk", 3f, null),
-            new InventoryItems("Bread", 4f, null)
+            {0, new InventoryItems("Apple", 2f, null)},
+            {1, new InventoryItems("Milk", 3f, null)},
+            {2, new InventoryItems("Bread", 4f, null)}
         };
 
         speechBubble.UpdateBubble(items);
@@ -100,9 +100,9 @@ public class SpeechBubbleTests
             slot.itemImage.enabled = true;
         }
 
-        List<InventoryItems> items = new List<InventoryItems>
+        Dictionary<int, InventoryItems> items = new Dictionary<int, InventoryItems>
         {
-            new InventoryItems("Apple", 2f, null)
+            {0, new InventoryItems("Apple", 2f, null)}
         };
 
         speechBubble.UpdateBubble(items);
@@ -123,9 +123,9 @@ public class SpeechBubbleTests
         Texture2D texture = new Texture2D(16, 16);
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
 
-        List<InventoryItems> items = new List<InventoryItems>
+        Dictionary<int, InventoryItems> items = new Dictionary<int, InventoryItems>
         {
-            new InventoryItems("Apple", 2f, sprite)
+            {0, new InventoryItems("Apple", 2f, sprite)}
         };
 
         speechBubble.UpdateBubble(items);

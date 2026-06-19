@@ -30,7 +30,7 @@ public class InventoryManagerTests
     [Test]
     public void AddItem_AddsItemToInventory()
     {
-        inventoryManager.AddItem("Apple", 2f, null);
+        inventoryManager.AddItem(0, "Apple", 2f, null);
 
         Assert.AreEqual(1, inventoryManager.inventoryItems.Count);
         Assert.AreEqual("Apple", inventoryManager.inventoryItems[0].itemName);
@@ -41,20 +41,19 @@ public class InventoryManagerTests
     [Test]
     public void AddItem_IncreasesTotalItems()
     {
-        inventoryManager.AddItem("Apple", 2f, null);
+        inventoryManager.AddItem(0, "Apple", 2f, null);
 
-        Assert.AreEqual(1, inventoryManager.totalItems);
+        Assert.AreEqual(1, inventoryManager.inventoryItems.Count);
     }
 
     [Test]
     public void AddItem_StoresMultipleItemsInCorrectOrder()
     {
-        inventoryManager.AddItem("Apple", 2f, null);
-        inventoryManager.AddItem("Milk", 3f, null);
-        inventoryManager.AddItem("Bread", 4f, null);
+        inventoryManager.AddItem(0, "Apple", 2f, null);
+        inventoryManager.AddItem(1, "Milk", 3f, null);
+        inventoryManager.AddItem(2, "Bread", 4f, null);
 
         Assert.AreEqual(3, inventoryManager.inventoryItems.Count);
-        Assert.AreEqual(3, inventoryManager.totalItems);
 
         Assert.AreEqual("Apple", inventoryManager.inventoryItems[0].itemName);
         Assert.AreEqual("Milk", inventoryManager.inventoryItems[1].itemName);
@@ -64,11 +63,10 @@ public class InventoryManagerTests
     [Test]
     public void AddItem_AllowsDuplicateItems()
     {
-        inventoryManager.AddItem("Apple", 2f, null);
-        inventoryManager.AddItem("Apple", 2f, null);
+        inventoryManager.AddItem(0, "Apple", 2f, null);
+        inventoryManager.AddItem(1, "Apple", 2f, null);
 
         Assert.AreEqual(2, inventoryManager.inventoryItems.Count);
-        Assert.AreEqual(2, inventoryManager.totalItems);
         Assert.AreEqual("Apple", inventoryManager.inventoryItems[0].itemName);
         Assert.AreEqual("Apple", inventoryManager.inventoryItems[1].itemName);
     }
